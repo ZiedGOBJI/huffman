@@ -13,7 +13,6 @@ class Node:
 			self.value = 0 
 
 
-
 	def get_rightChild(self):
 		return self.rightChild
 
@@ -26,5 +25,27 @@ class Node:
 	def get_freq(self):
 		return self.freq
 
+	def is_feuille(self):
+		if self.leftChild is None and self.rightChild is None:
+			return(True)
+		else:
+			return(False)
 
+	def get_childs():
+		return self.get_leftChild(), self.get_rightChild()
+		
 
+	def get_path(self, node):
+
+		path = []
+		liste_child = self.get_liste_child()
+
+		while self!= node:
+			for nodes in liste_child:
+				if(nodes.get_leftChild() == node or nodes.get_rightChild() == node):
+					path.append(node)
+					node = nodes 
+		path.append(self)
+		path.reverse()
+
+		return(path)	# [root, root child, root grand-child, node]

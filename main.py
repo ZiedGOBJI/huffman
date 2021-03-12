@@ -1,17 +1,28 @@
 import fonctionnalite.arbre.fonction_arbre as fa 
 import fonctionnalite.lexique.freqNEW as freq 
+import fonctionnalite.codage.codage as co 
 
 
-#test lexique (étape 1)
 
 nomFichier = input("entrez le nom du fichier à tester :")
 
-a = open("./txt/source/" + nomFichier + ".txt", "r", encoding="utf-8").read()
+a = open("./txt/source/" + nomFichier + ".txt", "r").read()
 
-FreqCroiss = freq.freq(a)
+FreqCroiss, lettres = freq.freq(a)
 
-#test construction de l'arbre (étape 2)
 
-liste_nodes = fa.creer_arbre(FreqCroiss)
+root = fa.creer_arbre(FreqCroiss)
 
-fa.code("a", liste_nodes)
+codes = co.encodage(root)
+
+compressed = co.compression(codes, a)
+
+taux = co.taux_compression(a, compressed)
+
+print(co.nb_moyen(codes))
+
+
+
+
+
+

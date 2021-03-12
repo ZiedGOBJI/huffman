@@ -30,9 +30,11 @@ def freq(texte):
 	for tuples in FreqCroiss:
 
 		a, b = tuples 
+
+
 		f.write(str(a) + " " + str(b) + "\n")
 
-	return(FreqCroiss)
+	return(FreqCroiss, lettres)
 
 
 
