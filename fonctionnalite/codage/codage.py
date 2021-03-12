@@ -1,5 +1,4 @@
 #obtenir le code de chaque caractère individuellement
-
 def encodage(node, chemin = ""):
 
 	codes = {}
@@ -20,7 +19,7 @@ def encodage(node, chemin = ""):
 		
 		return codes
 
-
+#on met bout à bout le code de chaque caractère du texte source pour obtenir le code du texte, et donc le texte compressé 
 def compression(codes, texte_source):
 	
 	compressed_text = ""
@@ -36,7 +35,7 @@ def compression(codes, texte_source):
 
 
 
-
+#calcul du taux de compression
 def taux_compression(texte_source, compressed_text):
 
 
@@ -55,9 +54,9 @@ def taux_compression(texte_source, compressed_text):
 	return 1-(nb_octets_compressed/nb_octets_source)
 
 
+#calcul du nombre moyen de bits de stockage d'un caractère du texte compressé
 def nb_moyen(codes):
 
-#calcul somme des chemins de toutes les lettres de codes
 	somme = 0
 
 	for lettre in codes.values():

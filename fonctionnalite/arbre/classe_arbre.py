@@ -12,29 +12,34 @@ class Node:
 		else :
 			self.value = 0 
 
-
+#obtenir l'enfant de droite
 	def get_rightChild(self):
 		return self.rightChild
 
+#obtenir l'enfant de gauche
 	def get_leftChild(self):
 		return self.leftChild
 
+#obtenir le label
 	def get_label(self):
 		return self.label
 
+#obtenir l'occurence
 	def get_freq(self):
 		return self.freq
 
+#savoir si c'est une feuille ou pas
 	def is_feuille(self):
 		if self.leftChild is None and self.rightChild is None:
 			return(True)
 		else:
 			return(False)
 
+#obtenir les enfants 
 	def get_childs():
 		return self.get_leftChild(), self.get_rightChild()
 		
-
+#obtenir le chemin parcouru pour arriver à une feuille
 	def get_path(self, node):
 
 		path = []

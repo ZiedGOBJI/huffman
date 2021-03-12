@@ -40,5 +40,3 @@ def freq(texte):
 
 
 
-
-#derniere modif : changer FreqCroiss = str(sorted()) en FreqCroiss = sorted()

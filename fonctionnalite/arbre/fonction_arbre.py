@@ -1,8 +1,8 @@
 from operator import attrgetter
 import fonctionnalite.arbre.classe_arbre as ca 
 
-#création liste de nodes dépareillées
 
+#créer les noeuds des caractères, donc les feuilles
 def creer_liste_nodes(FreqCroiss):
 	liste_nodes = []
 	for t in FreqCroiss:
@@ -10,12 +10,14 @@ def creer_liste_nodes(FreqCroiss):
 
 	return liste_nodes
 
-
+#on trouve les noeuds des 2 caractères ayant le moins d'occurence
 def freq_min(liste_nodes = []):	
 	t1 = liste_nodes[0]
 	t2 = liste_nodes[1]
 	return t1, t2
 
+#on crée un nouveau noeud, qui sera une racine locale d'un sous-arbre, ce noeud est construit selon la somme 
+#des 2 fréquences minimales déterminées grâce à freq_min()
 def nouvel_arbre(sous_arbre_gauche, sous_arbre_droite):
 	t1, t2 = sous_arbre_gauche, sous_arbre_droite
 	t = ca.Node(t1.get_label() + t2.get_label(), t1.get_freq() + t2.get_freq(), t1, t2)
@@ -39,6 +41,6 @@ def creer_arbre(FreqCroiss):
 
 	return root 
 
-################################################################################################################
+
 
 
