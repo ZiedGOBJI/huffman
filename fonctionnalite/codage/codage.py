@@ -3,59 +3,59 @@ def encodage(node, chemin = ""):
 
 	codes = {}
 
-	if node.is_feuille():
+	if node.isFeuille():
 		if chemin == "":
-			codes[node.get_label()] = "0"
+			codes[node.getLabel()] = "0"
 		else:
-			codes[node.get_label()]=chemin 	
+			codes[node.getLabel()]=chemin 	
 		return codes 
 
 
 	else:
 
-		codes.update(encodage(node.get_rightChild(), chemin+"1"))
+		codes.update(encodage(node.getrightChild(), chemin+"1"))
 
-		codes.update(encodage(node.get_leftChild(), chemin+"0"))
+		codes.update(encodage(node.getleftChild(), chemin+"0"))
 		
 		return codes
 
 #on met bout à bout le code de chaque caractère du texte source pour obtenir le code du texte, et donc le texte compressé 
-def compression(codes, texte_source):
+def compression(codes, texteSource):
 	
-	compressed_text = ""
+	compressedText = ""
 
-	for lettre in texte_source:
+	for lettre in texteSource:
 
-		compressed_text += codes[lettre]
+		compressedText += codes[lettre]
 
 	f = open("./txt/resultat/compression.txt", "w")
-	f.write(compressed_text)
+	f.write(compressedText)
 
-	return(compressed_text)
+	return(compressedText)
 
 
 
 #calcul du taux de compression
-def taux_compression(texte_source, compressed_text):
+def tauxCompression(texteSource, compressedText):
 
 
 #calcul volume initial (en octet)
 
-	nb_bits_source = len(texte_source)*8
-	nb_octets_source = nb_bits_source/8
+	nbbitsSource = len(texteSource)*8
+	nboctetsSource = nbbitsSource/8
 
 #calcul volume final (en octet)
 
-	nb_bits_compressed = len(compressed_text)
-	nb_octets_compressed = nb_bits_compressed/8
+	nbbitsCompressed = len(compressedText)
+	nboctetsCompressed = nbbitsCompressed/8
 
 #calcul 1 - volume final/volume initial
 
-	return 1-(nb_octets_compressed/nb_octets_source)
+	return 1-(nboctetsCompressed/nboctetsSource)
 
 
 #calcul du nombre moyen de bits de stockage d'un caractère du texte compressé
-def nb_moyen(codes):
+def nbMoyen(codes):
 
 	somme = 0
 

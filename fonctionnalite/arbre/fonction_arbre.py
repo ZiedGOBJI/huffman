@@ -2,42 +2,43 @@ from operator import attrgetter
 import fonctionnalite.arbre.classe_arbre as ca 
 
 
-#créer les noeuds des caractères, donc les feuilles
-def creer_liste_nodes(FreqCroiss):
-	liste_nodes = []
-	for t in FreqCroiss:
-		liste_nodes.append(ca.Node(t[0],t[1]))
+def creerlisteNodes(freqCroiss):
+	#créer les noeuds des caractères, donc les feuilles
+	listeNodes = []
+	for t in freqCroiss:
+		listeNodes.append(ca.Node(t[0],t[1]))
 
-	return liste_nodes
+	return listeNodes
 
-#on trouve les noeuds des 2 caractères ayant le moins d'occurence
-def freq_min(liste_nodes = []):	
-	t1 = liste_nodes[0]
-	t2 = liste_nodes[1]
+def freqMin(listeNodes = []):	
+	#on trouve les noeuds des 2 caractères ayant le moins d'occurence
+	t1 = listeNodes[0]
+	t2 = listeNodes[1]
 	return t1, t2
 
-#on crée un nouveau noeud, qui sera une racine locale d'un sous-arbre, ce noeud est construit selon la somme 
-#des 2 fréquences minimales déterminées grâce à freq_min()
-def nouvel_arbre(sous_arbre_gauche, sous_arbre_droite):
-	t1, t2 = sous_arbre_gauche, sous_arbre_droite
-	t = ca.Node(t1.get_label() + t2.get_label(), t1.get_freq() + t2.get_freq(), t1, t2)
+
+def nouvelArbre(sousarbreGauche, sousarbreDroite):
+#on crée un nouveau noeud, qui sera une racine locale d'un sous-arbre, ce noeud est construit selon la somme des 2 fréquences minimales déterminées grâce à freq_min()
+	t1, t2 = sousarbreGauche, sousarbreDroite
+	t = ca.Node(t1.getLabel() + t2.getLabel(), t1.getFreq() + t2.getFreq(), t1, t2)
 	return t
 
-#on applique l'algo de huffman, on obtient la racine de l'arbre
-def creer_arbre(FreqCroiss):
-	liste_nodes = creer_liste_nodes(FreqCroiss) 
+
+def creerArbre(freqCroiss):
+	#on applique l'algo de huffman, on obtient la racine de l'arbre
+	listeNodes = creerlisteNodes(freqCroiss) 
 
 
-	while len(liste_nodes)>1:
-		liste_nodes = sorted(liste_nodes, key=attrgetter("freq","label"))
-		t1, t2 = freq_min(liste_nodes)
+	while len(listeNodes)>1:
+		listeNodes = sorted(listeNodes, key=attrgetter("freq","label"))
+		t1, t2 = freqMin(listeNodes)
 
-		liste_nodes.append(nouvel_arbre(t2, t1))
+		listeNodes.append(nouvelArbre(t2, t1))
 
-		liste_nodes.pop(liste_nodes.index(t1))
-		liste_nodes.pop(liste_nodes.index(t2))
+		listeNodes.pop(listeNodes.index(t1))
+		listeNodes.pop(listeNodes.index(t2))
 
-	root = liste_nodes[0] 
+	root = listeNodes[0] 
 
 	return root 
 

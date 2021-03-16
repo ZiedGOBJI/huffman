@@ -1,7 +1,7 @@
 from operator import itemgetter
 
-#return un fichier .txt avec le résultat
 def freq(texte):
+#return la liste freqCroiss dans un fichier texte
 	freq = []
 	lettres = []
 	occurences = []
@@ -21,20 +21,20 @@ def freq(texte):
 		freq.append((lettres[i],occurences[i]))
 
 #on trie d'abord par l'élément "1" (fréquences) puis par l'élément "0" (ordre caractères ascii)
-	FreqCroiss = sorted(freq, key=itemgetter(1,0))
+	freqCroiss = sorted(freq, key=itemgetter(1,0))
 
 #Mise en forme conforme
 	f = open("./txt/lexique/lexique.txt", "w")
 	f.write(str(len(lettres)) + "\n")
 
-	for tuples in FreqCroiss:
+	for tuples in freqCroiss:
 
 		a, b = tuples 
 
 
 		f.write(str(a) + " " + str(b) + "\n")
 
-	return(FreqCroiss, lettres)
+	return(freqCroiss, lettres)
 
 
 

@@ -7,47 +7,41 @@ class Node:
 		self.leftChild = leftChild
 		self.rightChild = rightChild
 
-		if self.rightChild and self.leftChild: #pour gérer le cas de la racine pour la fonction code de fonction_arbre.py
-			self.value = 1
-		else :
-			self.value = 0 
-
-#obtenir l'enfant de droite
-	def get_rightChild(self):
+	def getrightChild(self):
+		#obtenir l'enfant de droite
 		return self.rightChild
 
-#obtenir l'enfant de gauche
-	def get_leftChild(self):
+	def getleftChild(self):
+		#obtenir l'enfant de gauche
 		return self.leftChild
 
-#obtenir le label
-	def get_label(self):
+	def getLabel(self):
+		#obtenir le label
 		return self.label
 
-#obtenir l'occurence
-	def get_freq(self):
+	def getFreq(self):
+		#obtenir l'occurence
 		return self.freq
 
-#savoir si c'est une feuille ou pas
-	def is_feuille(self):
+	def isFeuille(self):
+		#savoir si c'est une feuille ou pas
 		if self.leftChild is None and self.rightChild is None:
 			return(True)
 		else:
 			return(False)
-
-#obtenir les enfants 
-	def get_childs():
-		return self.get_leftChild(), self.get_rightChild()
+ 
+	def getChilds():
+		#obtenir les enfants
+		return self.getleftChild(), self.getrightChild()
 		
-#obtenir le chemin parcouru pour arriver à une feuille
-	def get_path(self, node):
-
+	def getPath(self, node):
+		#obtenir le chemin parcouru pour arriver à une feuille
 		path = []
-		liste_child = self.get_liste_child()
+		listeChild = self.getChilds()
 
 		while self!= node:
-			for nodes in liste_child:
-				if(nodes.get_leftChild() == node or nodes.get_rightChild() == node):
+			for nodes in listeChild:
+				if(nodes.getleftChild() == node or nodes.getrightChild() == node):
 					path.append(node)
 					node = nodes 
 		path.append(self)
